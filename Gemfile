@@ -23,9 +23,6 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
-  
-  gem 'compass-rails'
-  gem 'zurb-foundation'
   gem 'uglifier', '>= 1.0.3'
 end
 
