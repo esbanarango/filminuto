@@ -1,8 +1,15 @@
 Filminuto::Application.routes.draw do
-
+  
+  authenticated :user do
+    root :to => 'pages#index'
+  end
+  
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
 
+  resources :users
+  
   root :to => "pages#index"
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

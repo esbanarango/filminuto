@@ -6,10 +6,14 @@ class User < ActiveRecord::Base
   acts_as_paranoid         
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :login, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :login, :first_name, :last_name, :password, :password_confirmation, :remember_me
   # Virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
   attr_accessor :login
+
+  validates_presence_of :username, :case_sensitive => false
+  validates_uniqueness_of :username
+  validates_format_of :username, :with => /^[\w_]+$/
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

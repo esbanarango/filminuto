@@ -5,18 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Filminuto</title>
   <meta name="description" content="Upload and share one minute." />
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= yield(:head) %>
 </head>
-<body>
-  <header>
-    <%= render 'layouts/navigation' %>
-  </header>
-  <%= render 'layouts/messages' %>
-  <%= yield %>
-  <footer>
-  </footer>
+<body class="<%= controller_name %> <%= action_name %>">
+  <div id="container" class="container">
+    <header>
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/messages' %>
+    </header>
+    <div id="main" role="main">
+      <%= yield %>
+    </div>
+    <footer>
+    </footer>
+  </div> <!--! end of #container -->
 </body>
 </html>
