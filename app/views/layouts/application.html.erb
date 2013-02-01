@@ -25,16 +25,20 @@
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 </head>
-<body class="<%= controller_name %> <%= action_name %>">
+<body class="<%= controller_name %> <%= action_name %>" data-offset="80">
+  <header class="navbar navbar-fixed-top">
+    <%= render 'layouts/navigation' %>
+  </header>
   <div id="container" class="container">
-    <header>
-      <%= render 'layouts/navigation' %>
-      <%= render 'layouts/messages' %>
-    </header>
+    <%= render 'layouts/messages' %>
     <div id="content" role="main" class="content">
       <%= yield %>
     </div>
-    <footer>
+    <footer id="footer">
+      <p class="pull-right"><a href="#">Back to top</a></p>
+      <div class="links">
+      </div>
+      Made by <a target="_blank" href="#" onclick="">Esteban Arango Medina</a>.
     </footer>
   </div> <!--! end of #container -->
 </body>

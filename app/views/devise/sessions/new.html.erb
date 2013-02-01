@@ -1,6 +1,6 @@
 <h2>Sign in</h2>
 
-<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal' } do |f| %>
   <div class="form-inputs">
     <%= f.input :login, :required => false, :autofocus => true %>
     <%= f.input :password, :required => false %>
@@ -11,5 +11,7 @@
     <%= f.button :submit, "Sign in" %>
   </div>
 <% end %>
+<ul class="inline">
+  <%= render "devise/shared/links" %>
+</ul>
 
-<%= render "devise/shared/links" %>
