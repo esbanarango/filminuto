@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121216014042) do
+ActiveRecord::Schema.define(:version => 20130215183556) do
 
   create_table "users", :force => true do |t|
     t.string   "username",               :limit => 25,                 :null => false
@@ -34,5 +34,19 @@ ActiveRecord::Schema.define(:version => 20121216014042) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "videos", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "duration"
+    t.integer  "likes_count"
+    t.integer  "dislikes_count"
+    t.integer  "views_count"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "videos", ["user_id"], :name => "index_videos_on_user_id"
 
 end

@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_format_of :username, :with => /^[\w_]+$/
 
+  has_many :videos
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)

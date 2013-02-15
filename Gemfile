@@ -27,12 +27,19 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  gem 'annotate', '>=2.5.0'
+  gem 'spork-rails', '~> 3.2.1'
+end
+
 group :test, :development do
 
   gem 'version_gemfile', '~> 1.0.0'
   gem 'rspec-rails', '~> 2.12.2'
+  gem 'factory_girl_rails', '~> 4.2.0'
   gem 'launchy', '~> 2.1.2'
 
+  gem 'dotenv', '~> 0.5.0'
 
   gem 'quiet_assets', '~> 1.0.1'
   gem 'better_errors', '~> 0.3.2'
@@ -40,20 +47,10 @@ group :test, :development do
 end
 
 group :test do
+  gem 'faker', '~> 1.1.2'
   gem 'capybara', '~> 2.0.2'
   gem 'database_cleaner', '~> 0.9.1'
-  gem 'factory_girl_rails', '~> 4.2.0'
   gem 'email_spec', '~> 1.4.0'
+  gem 'shoulda-matchers', '~> 1.4.2'
 end
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
