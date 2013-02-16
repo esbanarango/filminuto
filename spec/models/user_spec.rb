@@ -3,104 +3,77 @@ require 'spec_helper'
 describe User do
   context "validations" do
 
-    before(:each) do
-      @attr = {
-        :username => "elLorito",
-        :email => "user@example.com",
-        :password => "changeme",
-        :password_confirmation => "changeme"
-      }
-    end
-
-    it "creates a new instance given a valid attribute" do
-      User.create!(@attr)
+    it "has a valid factory" do
+      FactoryGirl.create(:user).should be_valid
     end
 
     it "requires an email address" do
-      no_email_user = User.new(@attr.merge(:email => ""))
-      no_email_user.should_not be_valid
+      FactoryGirl.build(:user, email: "").should_not be_valid
     end
 
     it "accepts valid email addresses" do
       addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
       addresses.each do |address|
-        valid_email_user = User.new(@attr.merge(:email => address))
-        valid_email_user.should be_valid
+        FactoryGirl.build(:user, email: address).should be_valid
       end
     end
 
     it "rejects invalid email addresses" do
       addresses = %w[user@foo,com user_at_foo.org example.user@foo.]
       addresses.each do |address|
-        invalid_email_user = User.new(@attr.merge(:email => address))
-        invalid_email_user.should_not be_valid
+        FactoryGirl.build(:user, email: address).should_not be_valid
       end
     end
 
     it "rejects duplicate email addresses" do
-      User.create!(@attr)
-      user_with_duplicate_email = User.new(@attr)
-      user_with_duplicate_email.should_not be_valid
+      FactoryGirl.create(:user, email: "esban@elcalidoso.com")
+      FactoryGirl.build(:user, 
+        email: "esban@elcalidoso.com").should_not be_valid      
     end
 
     it "rejects email addresses identical up to case" do
-      upcased_email = @attr[:email].upcase
-      User.create!(@attr.merge(:email => upcased_email))
-      user_with_duplicate_email = User.new(@attr)
-      user_with_duplicate_email.should_not be_valid
+      upcased_email = "esban@elcalidoso.com".upcase
+      FactoryGirl.create(:user, email: upcased_email)
+      FactoryGirl.build(:user, email: "esban@elcalidoso.com").should_not be_valid
     end
 
     describe "passwords" do
+      subject {FactoryGirl.build(:user) }
 
-      before(:each) do
-        @user = User.new(@attr)
-      end
+      it { should respond_to(:password) }
+      it { should respond_to(:password_confirmation) }
 
-      it "should have a password attribute" do
-        @user.should respond_to(:password)
-      end
+      describe "password validations" do
 
-      it "should have a password confirmation attribute" do
-        @user.should respond_to(:password_confirmation)
-      end
-    end
+        it "requires a password" do
+          FactoryGirl.build(:user, password: "", password_confirmation: "").
+            should_not be_valid
+        end
 
-    describe "password validations" do
+        it "requires a matching password confirmation" do
+          FactoryGirl.build(:user, password_confirmation: "invalid").
+            should_not be_valid
+        end
 
-      it "should require a password" do
-        User.new(@attr.merge(:password => "", :password_confirmation => "")).
-          should_not be_valid
-      end
+        it "rejects short passwords" do
+          short = "a" * 5
+          FactoryGirl.build(:user, password: short, password_confirmation: short).
+            should_not be_valid
+        end
 
-      it "should require a matching password confirmation" do
-        User.new(@attr.merge(:password_confirmation => "invalid")).
-          should_not be_valid
-      end
+      end#password validations
 
-      it "should reject short passwords" do
-        short = "a" * 5
-        hash = @attr.merge(:password => short, :password_confirmation => short)
-        User.new(hash).should_not be_valid
-      end
+      describe "password encryption" do
+        let!(:user) { FactoryGirl.create(:user) }
+        subject { user }
 
-    end
+        it {should respond_to(:encrypted_password)}
+        its(:encrypted_password) {should_not be_blank}
 
-    describe "password encryption" do
+      end#password encryption   
 
-      before(:each) do
-        @user = User.create!(@attr)
-      end
+    end#passwords
 
-      it "should have an encrypted password attribute" do
-        @user.should respond_to(:encrypted_password)
-      end
-
-      it "should set the encrypted password attribute" do
-        @user.encrypted_password.should_not be_blank
-      end
-
-    end
-
-  end
+  end#validations
 
 end
