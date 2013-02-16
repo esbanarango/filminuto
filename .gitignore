@@ -10,6 +10,8 @@
 # http://github.com/RailsApps/rails-composer/issues
 #----------------------------------------------------------------------------
 
+/public/assets/*
+
 # bundler state
 /.bundle
 /vendor/bundle/

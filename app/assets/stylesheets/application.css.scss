@@ -12,3 +12,47 @@
  *= require_self
  *= require_tree .
  */
+
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Change the docs' brand */
+body > .navbar .brand {
+  margin-left: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+  -webkit-transition: all .2s linear;
+     -moz-transition: all .2s linear;
+          transition: all .2s linear;
+}
+
+body > .navbar .brand:hover {
+  color: #666;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.4);
+}
+
+.container {
+  width: 768px;
+  margin: 0 auto;
+}
+
+.content-inner {
+  padding: 25px 20px 25px;
+  background-color: #fff;
+}
+
+.pump-up {
+  color: #333;
+  margin: 70px 22px 35px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+  line-height: 40px;
+}

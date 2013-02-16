@@ -11,6 +11,8 @@ gem 'acts_as_api', '~> 0.4.1'       # "Makes creating XML/JSON responses in Rail
 gem 'cancan', '~> 1.6.8'            # "Authorization library to restricts what resources a given user is allowed to access."
 gem 'devise', '~> 2.1.2'            # Authentication
 gem 'acts_as_paranoid', '~> 0.4.1'  # To hide and restore records without actually deleting them
+gem 'paperclip', '~> 3.4.0'
+gem 'paperclip-ffmpeg', '~> 0.9.4'  # Process the attachments with FFMPEG
 gem 'simple_form', '~> 2.0.4'
 gem 'jquery-rails', '~> 2.2.0'
 

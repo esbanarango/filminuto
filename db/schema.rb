@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130215183556) do
+ActiveRecord::Schema.define(:version => 20130215220207) do
 
   create_table "users", :force => true do |t|
     t.string   "username",               :limit => 25,                 :null => false
@@ -43,8 +43,12 @@ ActiveRecord::Schema.define(:version => 20130215183556) do
     t.integer  "dislikes_count"
     t.integer  "views_count"
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   add_index "videos", ["user_id"], :name => "index_videos_on_user_id"

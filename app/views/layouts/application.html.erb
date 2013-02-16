@@ -15,7 +15,8 @@
 	
 	<title><%= content_for?(:title) ? yield(:title) : "Filminuto" %></title>
 	<meta name="description" content="Upload and share one minute." />
-  
+  <link href="//vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+  <script src="//vjs.zencdn.net/c/video.js"></script>
 	<!-- Included CSS Files -->
 	<%= stylesheet_link_tag    "application" %>
 	
@@ -38,7 +39,7 @@
       <p class="pull-right"><a href="#">Back to top</a></p>
       <div class="links">
       </div>
-      Made by <a target="_blank" href="#" onclick="">Esteban Arango Medina</a>.
+      Made by <a target="_blank" href="http://esbanarango.com" onclick="">Esbanarango</a>.
     </footer>
   </div> <!--! end of #container -->
 </body>
