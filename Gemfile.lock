@@ -5,6 +5,14 @@ GIT
     delayed_paperclip (2.5.1.0)
       paperclip (>= 3.3.0)
 
+GIT
+  remote: git@github.com:esbanarango/paperclip-ffmpeg.git
+  revision: 7e244c39d2697cb63dddfb5ba5a8e27055a15828
+  specs:
+    paperclip-ffmpeg (0.9.4)
+      paperclip (>= 0.9.2)
+      paperclip (>= 2.5.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -130,9 +138,6 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.4.0)
       mime-types
-    paperclip-ffmpeg (0.9.4)
-      paperclip (>= 0.9.2)
-      paperclip (>= 2.5.2)
     pg (0.14.1)
     polyglot (0.3.3)
     quiet_assets (1.0.1)
@@ -242,7 +247,7 @@ DEPENDENCIES
   launchy (~> 2.1.2)
   mini_exiftool (~> 1.6.0)
   paperclip (~> 3.4.0)
-  paperclip-ffmpeg (~> 0.9.4)
+  paperclip-ffmpeg!
   pg (~> 0.14.1)
   quiet_assets (~> 1.0.1)
   rails (= 3.2.11)

@@ -9,7 +9,8 @@
       <div class="span4">
         <h3><%=video.title%></h3>
         <p><%=video.description%></p>
-        <video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="340" height="264" poster="" data-setup="{}">
+        <video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="340" height="264" 
+              poster="<%=video.file.url('thumb')%>" data-setup="{}">
           <source src="<%=video.file.url('mp4')%>" type='video/mp4'>
         </video>
         <div class="controls">

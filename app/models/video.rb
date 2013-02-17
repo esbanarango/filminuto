@@ -21,35 +21,34 @@
 
 class Video < ActiveRecord::Base
   
+  TYPES = ['video/mp4','video/mov','video/quicktime','video/mpeg', 'video/avi']
+
   has_attached_file :file,
     :url => "/assets/videos/:id/:style/:basename.:extension",
     :path => ":rails_root/public/assets/videos/:id/:style/:basename.:extension",
-    :processors => [:ffmpeg],
     :styles => lambda { |video| {
-            :mp4 => { :format => 'mp4', :convert_options => video.instance.convert_options }
+            :mp4 => { :format => 'mp4', :convert_options => { :output => { 
+                       vf: video.instance.transposition,
+                       t: '60'
+                       } } },
+            :thumb => { :geometry => "250x250#", :format => 'jpg', :time => 1, :convert_options => { :output => { 
+                       vf: video.instance.transposition
+                       } } }
                   }
-                }
-
-  process_in_background :file
+                },
+    :processors => [:ffmpeg]                
 
   validates_attachment_presence :file
+  validates_attachment_content_type :file, content_type: TYPES, 
+    message: "Invalid video format."
   validates :title, :description, :presence => true
+
+  process_in_background :file
 
   belongs_to :user
 
   attr_accessible :description, :title, :file, :file_meta
 
-
-  # ffmpeg Options to process
-  def convert_options
-    output = {}
-    output['t'] = '60'
-    trans = transposition
-    output['vf'] = trans if trans
-    return { output: output }    
-  end
-
-  private
 
   # Method to know if the video needs to be rotated.
   def transposition
@@ -59,7 +58,6 @@ class Video < ActiveRecord::Base
       return "transpose=1" if rotation == 90
       return "transpose=2" if rotation == 270
       return "vflip,hflip" if rotation == 180
-      return nil
     end
   end
 
