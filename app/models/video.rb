@@ -26,9 +26,7 @@ class Video < ActiveRecord::Base
     :path => ":rails_root/public/assets/videos/:id/:style/:basename.:extension",
     :processors => [:ffmpeg],
     :styles => lambda { |video| {
-            :mp4 => { :format => 'mp4',
-              :convert_options => { :output => { 
-                vf: video.instance.transposition, t: '60'} } }
+            :mp4 => { :format => 'mp4', :convert_options => video.instance.convert_options }
                   }
                 }
 
@@ -41,6 +39,19 @@ class Video < ActiveRecord::Base
 
   attr_accessible :description, :title, :file, :file_meta
 
+
+  # ffmpeg Options to process
+  def convert_options
+    output = {}
+    output['t'] = '60'
+    trans = transposition
+    output['vf'] = trans if trans
+    return { output: output }    
+  end
+
+  private
+
+  # Method to know if the video needs to be rotated.
   def transposition
     if file.queued_for_write[:original]
       path = file.queued_for_write[:original].path
@@ -48,6 +59,7 @@ class Video < ActiveRecord::Base
       return "transpose=1" if rotation == 90
       return "transpose=2" if rotation == 270
       return "vflip,hflip" if rotation == 180
+      return nil
     end
   end
 

@@ -1,11 +1,10 @@
-<%= simple_form_for([current_user,@video], :html => {:multipart => true, :class => "form-
-inline"}) do |f| %>
+<%= simple_form_for([current_user,@video], :html => {:multipart => true, :class => "form-inline"}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :file, :label => 'Source' %> 
+    <%= f.input :title, label: false, placeholder: 'Title', input_html: { style: "width: 300px;" } %>
+    <%= f.input :description, label: false, placeholder: 'Description', input_html: { style: "width: 300px; height: 100px;" }  %>
+    <%= f.input :file, label: false%> 
   </div>
 
   <div class="form-actions">

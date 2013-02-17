@@ -36,7 +36,7 @@ class VideosController < ApplicationController
     @video = Video.new(params[:video])
     @video.user = current_user
 
-    flash[:success] = 'Video was successfully created.' if @video.save
+    flash[:success] = 'Video has been uploaded and is being processed.' if @video.save
     respond_with(current_user,@video)
   end
 

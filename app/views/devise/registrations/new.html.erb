@@ -1,13 +1,17 @@
-<h2>Sign up</h2>
+<div class="row">
+  <div class="offset3 span6">
+    <h2>Sign up</h2>
 
-<%= simple_form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal' } do |f| %>
-    <%= f.error_notification %>
-    <%= f.input :username, :required => true, :autofocus => true %>
-    <%= f.input :email, :required => true %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :password_confirmation, :required => true %>
-    <%= f.button :submit, "Sign up" %>
-<% end %>
-<ul class="inline">
-  <%= render "devise/shared/links" %>
-</ul>
+    <%= simple_form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal' } do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :username, :label => false, :required => true, :autofocus => true, placeholder: 'Username' %>
+        <%= f.input :email, :label => false, :required => true, placeholder: 'Email' %>
+        <%= f.input :password, :label => false, :required => true, placeholder: 'Password' %>
+        <%= f.input :password_confirmation, :label => false, :required => true, placeholder: 'Password Confirmation' %>
+        <%= f.button :submit, "Sign up" %>
+    <% end %>
+    <ul class="inline">
+      <%= render "devise/shared/links" %>
+    </ul>
+  </div>
+</div>
