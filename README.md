@@ -4,7 +4,7 @@ filminuto
 [![][2]][1]
 
   [1]: https://travis-ci.org/esbanarango/filminuto
-  [2]: https://api.travis-ci.org/esbanarango/filminuto.png (Code status)
+  [2]: https://api.travis-ci.org/esbanarango/filminuto.png?branch=master (Code status)
 
 ###Run it locally
 ```bash
