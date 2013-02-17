@@ -7,9 +7,8 @@
   <div class="span4">
     <h2><%=video.title%></h2>
     <p><%=video.description%></p>
-    <%=video.file.url('medium')%>
-    <video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264" poster="my_video_poster.png" data-setup="{}">
-      <source src="<%=video.file.url('medium')%>" type='video/mp4'>
+    <video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="340" height="264" poster="" data-setup="{}">
+      <source src="<%=video.file.url()%>" type='video/mp4'>
     </video>    
     
     <%= link_to 'Show', user_video_path(current_user,video) %>

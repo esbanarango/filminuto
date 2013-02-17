@@ -13,6 +13,7 @@ gem 'devise', '~> 2.1.2'            # Authentication
 gem 'acts_as_paranoid', '~> 0.4.1'  # To hide and restore records without actually deleting them
 gem 'paperclip', '~> 3.4.0'
 gem 'paperclip-ffmpeg', '~> 0.9.4'  # Process the attachments with FFMPEG
+gem 'mini_exiftool', '~> 1.6.0'     # Wrapper for the Exiftool command-line application 
 gem 'simple_form', '~> 2.0.4'
 gem 'jquery-rails', '~> 2.2.0'
 

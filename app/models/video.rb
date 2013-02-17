@@ -20,11 +20,18 @@
 
 class Video < ActiveRecord::Base
   
-  has_attached_file :file, :styles => { 
-      :medium => { :geometry => "640x480", :format => 'mp4', :time => 60 }
-    }, :processors => [:ffmpeg],
-    :url => "/assets/videos/:id/:style/:basename.:extension",  
-    :path => ":rails_root/public/assets/videos/:id/:style/:basename.:extension" 
+  has_attached_file :file,
+    :url => "/assets/videos/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/assets/videos/:id/:style/:basename.:extension",
+    :processors => [:ffmpeg],
+    :styles => lambda { |video| {
+          :original => { :format => 'mp4',
+                     :convert_options => { :output => { 
+                       vf: video.instance.transposition,
+                       t: '60'
+                       } } }
+                      }
+                }
 
   validates_attachment_presence :file
   validates :title, :description, :presence => true
@@ -32,5 +39,15 @@ class Video < ActiveRecord::Base
   belongs_to :user
 
   attr_accessible :description, :title, :file
+
+  def transposition
+    if file.queued_for_write[:original]
+      path = file.queued_for_write[:original].path
+      rotation = MiniExiftool.new(path).rotation
+      return "transpose=1" if rotation == 90
+      return "transpose=2" if rotation == 270
+      return "vflip,hflip" if rotation == 180
+    end
+  end
 
 end
