@@ -35,6 +35,7 @@ end
 group :development do
   gem 'annotate', '>=2.5.0'
   gem 'spork-rails', '~> 3.2.1'
+  gem 'quiet_assets', '~> 1.0.1'  
 end
 
 group :test, :development do
@@ -46,7 +47,6 @@ group :test, :development do
 
   gem 'dotenv', '~> 0.5.0'
 
-  gem 'quiet_assets', '~> 1.0.1'
   gem 'better_errors', '~> 0.3.2'
   gem 'binding_of_caller', '~> 0.6.8'
 end
