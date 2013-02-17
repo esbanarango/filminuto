@@ -16,6 +16,7 @@
 #  file_content_type :string(255)
 #  file_file_size    :integer
 #  file_updated_at   :datetime
+#  file_meta         :text
 #
 
 class Video < ActiveRecord::Base
@@ -25,20 +26,20 @@ class Video < ActiveRecord::Base
     :path => ":rails_root/public/assets/videos/:id/:style/:basename.:extension",
     :processors => [:ffmpeg],
     :styles => lambda { |video| {
-          :original => { :format => 'mp4',
-                     :convert_options => { :output => { 
-                       vf: video.instance.transposition,
-                       t: '60'
-                       } } }
-                      }
+            :mp4 => { :format => 'mp4',
+              :convert_options => { :output => { 
+                vf: video.instance.transposition, t: '60'} } }
+                  }
                 }
+
+  process_in_background :file
 
   validates_attachment_presence :file
   validates :title, :description, :presence => true
 
   belongs_to :user
 
-  attr_accessible :description, :title, :file
+  attr_accessible :description, :title, :file, :file_meta
 
   def transposition
     if file.queued_for_write[:original]

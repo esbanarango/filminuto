@@ -6,14 +6,16 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg', '~> 0.14.1'
-gem 'bcrypt-ruby', '~> 3.0.0'       # To use ActiveModel has_secure_password
-gem 'acts_as_api', '~> 0.4.1'       # "Makes creating XML/JSON responses in Rails 3 easy and fun."
-gem 'cancan', '~> 1.6.8'            # "Authorization library to restricts what resources a given user is allowed to access."
-gem 'devise', '~> 2.1.2'            # Authentication
-gem 'acts_as_paranoid', '~> 0.4.1'  # To hide and restore records without actually deleting them
+gem 'bcrypt-ruby', '~> 3.0.0'               # To use ActiveModel has_secure_password
+gem 'acts_as_api', '~> 0.4.1'               # "Makes creating XML/JSON responses in Rails 3 easy and fun."
+gem 'cancan', '~> 1.6.8'                    # "Authorization library to restricts what resources a given user is allowed to access."
+gem 'devise', '~> 2.1.2'                    # Authentication
+gem 'acts_as_paranoid', '~> 0.4.1'          # To hide and restore records without actually deleting them
 gem 'paperclip', '~> 3.4.0'
-gem 'paperclip-ffmpeg', '~> 0.9.4'  # Process the attachments with FFMPEG
-gem 'mini_exiftool', '~> 1.6.0'     # Wrapper for the Exiftool command-line application 
+gem 'paperclip-ffmpeg', '~> 0.9.4'          # Process the attachments with FFMPEG
+gem 'delayed_paperclip', :git => 'git://github.com/jrgifford/delayed_paperclip.git'
+gem 'delayed_job_active_record', '~> 0.4.1' # ActiveRecord backend for Delayed::Job
+gem 'mini_exiftool', '~> 1.6.0'             # Wrapper for the Exiftool command-line application 
 gem 'simple_form', '~> 2.0.4'
 gem 'jquery-rails', '~> 2.2.0'
 

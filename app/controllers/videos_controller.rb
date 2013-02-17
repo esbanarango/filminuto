@@ -1,38 +1,28 @@
 class VideosController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:new, :edit, :update, :create]
+  before_filter :authenticate_user!, :skip => [:index, :show]
+
+  respond_to :html, :json, :js
 
   # GET /videos
   # GET /videos.json
   def index
     @videos = current_user.videos
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @videos }
-    end
+    respond_with(@videos)
   end
 
   # GET /videos/1
   # GET /videos/1.json
   def show
     @video = Video.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @video }
-    end
+    respond_with(@video)
   end
 
   # GET /videos/new
   # GET /videos/new.json
   def new
     @video = Video.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @video }
-    end
+    respond_with(@video)
   end
 
   # GET /videos/1/edit
@@ -46,15 +36,8 @@ class VideosController < ApplicationController
     @video = Video.new(params[:video])
     @video.user = current_user
 
-    respond_to do |format|
-      if @video.save
-        format.html { redirect_to user_video_url(current_user,@video), notice: 'Video was successfully created.' }
-        format.json { render json: @video, status: :created, location: @video }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @video.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:success] = 'Video was successfully created.' if @video.save
+    respond_with(current_user,@video)
   end
 
   # PUT /videos/1
@@ -62,15 +45,8 @@ class VideosController < ApplicationController
   def update
     @video = Video.find(params[:id])
 
-    respond_to do |format|
-      if @video.update_attributes(params[:video])
-        format.html { redirect_to @video, notice: 'Video was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @video.errors, status: :unprocessable_entity }
-      end
-    end
+    flash[:success] = 'Video was successfully updated.' if @video.update_attributes(params[:video])
+    respond_with(current_user,@video)
   end
 
   # DELETE /videos/1
