@@ -1,4 +1,9 @@
 language: ruby
 rvm:
   - 1.9.3
-script: bundle exec rspec spec
+env:
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate rspec spec
+before_script:
+  - psql -c 'create database filminuto_test' -U postgres
