@@ -9,10 +9,7 @@
       <div class="span4">
         <h3><%=video.title%></h3>
         <p><%=video.description%></p>
-        <video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="340" height="264" 
-              poster="<%=video.file.url('thumb')%>" data-setup="{}">
-          <source src="<%=video.file.url('mp4')%>" type='video/mp4'>
-        </video>
+        <img src="<%=video.file.url('thumb')%>" style="width:185px;height:125px" alt="">
         <div class="controls">
           <%= link_to 'Show', user_video_path(current_user,video) %> |
           <%= link_to 'Edit', edit_user_video_path(current_user,video) %> |
