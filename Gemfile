@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -18,7 +18,7 @@ gem 'delayed_job_active_record', '~> 0.4.1' # ActiveRecord backend for Delayed::
 gem 'mini_exiftool', '~> 1.6.0'             # Wrapper for the Exiftool command-line application 
 gem 'simple_form', '~> 2.0.4'
 gem 'jquery-rails', '~> 2.2.0'
-
+gem "thin"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,7 +35,9 @@ end
 group :development do
   gem 'annotate', '>=2.5.0'
   gem 'spork-rails', '~> 3.2.1'
-  gem 'quiet_assets', '~> 1.0.1'  
+  gem 'quiet_assets', '~> 1.0.1'
+  gem 'better_errors', '~> 0.3.2'
+  gem 'binding_of_caller', '~> 0.6.8'
 end
 
 group :test, :development do
@@ -46,9 +48,6 @@ group :test, :development do
   gem 'launchy', '~> 2.1.2'
 
   gem 'dotenv', '~> 0.5.0'
-
-  gem 'better_errors', '~> 0.3.2'
-  gem 'binding_of_caller', '~> 0.6.8'
 end
 
 group :test do

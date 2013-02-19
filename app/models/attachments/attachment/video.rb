@@ -24,16 +24,14 @@ module Attachment::Video
       :processors => [:ffmpeg]
   end
 
-  module InstanceMethods
-    # Method to know if the video needs to be rotated.
-    def rotate
-      if file.queued_for_write[:original]
-        path = file.queued_for_write[:original].path
-        rotation = MiniExiftool.new(path).rotation
-        return "transpose=1" if rotation == 90
-        return "transpose=2" if rotation == 270
-        return "vflip,hflip" if rotation == 180
-      end
+  # Method to know if the video needs to be rotated.
+  def rotate
+    if file.queued_for_write[:original]
+      path = file.queued_for_write[:original].path
+      rotation = MiniExiftool.new(path).rotation
+      return "transpose=1" if rotation == 90
+      return "transpose=2" if rotation == 270
+      return "vflip,hflip" if rotation == 180
     end
   end
 
