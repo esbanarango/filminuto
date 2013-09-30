@@ -19,6 +19,7 @@ gem 'mini_exiftool', '~> 1.6.0'             # Wrapper for the Exiftool command-l
 gem 'simple_form', '~> 2.0.4'
 gem 'jquery-rails', '~> 2.2.0'
 gem "thin"
+gem 'coveralls', require: false
 
 # Gems used only for assets and not required
 # in production environments by default.
