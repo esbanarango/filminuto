@@ -31,3 +31,6 @@ Pull requests are always very welcome!
 
 ## Author
 This was written by [Esteban Arango Medina](http://twitter.com/esbanarango).
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/esbanarango/filminuto/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
